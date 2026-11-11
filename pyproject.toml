@@ -7,7 +7,7 @@ name = "slack-notifications"
 description = "A library to send notifications to Slack."
 readme = {file = "README.md", content-type = "text/markdown"}
 version = "1.0.0"
-requires-python = ">=3.13"
+requires-python = ">=3.9"
 dependencies = [
     "apppath>=1.0.9",
     "typer>=0.27.3",
@@ -21,7 +21,7 @@ license-files = ["License.md", "Authors.md"]
 authors = [{name = "Micha Grandel", email = "michagrandel@proton.me"}]
 
 classifiers = [
-    "License :: OSI Approved :: Apache Software License",  # Kann entfernt werden, wird impliziert
+    "License :: OSI Approved :: Apache Software License",
 ]
 
 [dependency-groups]
@@ -43,15 +43,8 @@ testpaths = ["tests"]
 notify = "notifications.cli:main"
 
 [tool.tox]
-requires = ["tox>=4"]
-env_list = ["py315", "py314", "py313", "lint", "type"]
+requires = ["tox>=4.22"]
+env_list = ["py315", "py314", "py313", "py312", "py311", "lint", "type"]
 
 [testenv]
-description = "Tests all supported Python versions"
-deps = [
-    "pytest",
-    "pytest-cov",
-]
-commands = [
-    ["pytest", "--cov=src", { replace = "posargs", default = [], extend = true }],
-]
+runner = "uv"
