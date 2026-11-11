@@ -41,3 +41,17 @@ testpaths = ["tests"]
 
 [project.scripts]
 notify = "notifications.cli:main"
+
+[tool.tox]
+requires = ["tox>=4"]
+env_list = ["py315", "py314", "py313", "lint", "type"]
+
+[testenv]
+description = "Tests all supported Python versions"
+deps = [
+    "pytest",
+    "pytest-cov",
+]
+commands = [
+    ["pytest", "--cov=src", { replace = "posargs", default = [], extend = true }],
+]
